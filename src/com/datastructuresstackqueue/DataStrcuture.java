@@ -8,89 +8,92 @@ class Node {
 
     int data;
     Node next;
+
+    public Node(int data) {
+        super();
+        this.data = data;
+        this.next = null;
+    }
 }
 
 /*
- * Class to define stack operations method in it
+ * Class to define queue operation method
  */
+class QueueNew2 {
+    Node front, rear;
 
-public class DataStrcuture {
     /*
-     * Node class for node and data
+     * Constructor for rear and front of queue
      */
-    static class Node {
-        int data;
-        Node nextnode;
-
-        /*
-         * To define constructor for data and node
-         */
-        public Node(int data) {
-            super();
-            this.data = data;
-            this.nextnode = null;
-        }
+    public QueueNew2() {
+        super();
+        this.front = null;
+        this.rear = null;
     }
 
     /*
-     * Class to define queue operation method
+     * To insert data in queue
      */
-    static class QueueNew {
-        Node front, rear;
+    void toEnqueue(int data) {
+
+        Node temp = new Node(data);
 
         /*
-         * Constructor for rear and front of queue
+         * To check queue is empty or not
          */
-
-        public QueueNew() {
-            super();
-            this.front = null;
-            this.rear = null;
+        if (rear == null) {
+            front = rear = temp;
+            return;
         }
+        rear.next = temp;
+        rear = temp;
+    }
 
+    void toDequeue() {
+        if (front == null)
+            return;
+
+        Node temp = front;
+        front = front.next;
+
+        if (front == null)
+            rear = null;
+    }
+
+
+
+    /*
+     * This is main method  of program
+     *
+     */
+
+    public class DataStructure {
         /*
-         * To insert data in queue
+         * This is the main class of our program
          */
 
-        void toEnqueue(int data) {
-
-            Node temp = new Node(data);
-
+        public static void main(String[] args) throws Throwable {
 
             /*
-             * To check queue is empty or not
+             * To create object of queue
              */
+            QueueNew2 q = new QueueNew2();
 
-            if (rear == null) {
-                front = rear = temp;
-                return;
-            }
-            rear.nextnode = temp;
-            rear = temp;
+            q.toEnqueue(56);
+            q.toEnqueue(30);
+            q.toEnqueue(70);
+
+            System.out.println("Queue Front : " + ((q.front != null) ? (q.front).data : -1));
+
+            q.toDequeue();
+            q.toDequeue();
+            q.toDequeue();
+
+            System.out.println("Queue Rear : " + ((q.rear != null) ? (q.rear).data : -1));
         }
     }
 
-    /*
-     * This is main class of program
-     */
-
-    public static void main(String[] args) throws Throwable {
-
-        /*
-         * To create stack class object
-         */
-
-        QueueNew obj = new QueueNew();
-
-        obj.toEnqueue(56);
-        obj.toEnqueue(30);
-        obj.toEnqueue(70);
-
-        System.out.println("Queue Front : " + ((obj.front != null) ? (obj.front).data : -1));
-    }
 }
-
-
 
 
 
